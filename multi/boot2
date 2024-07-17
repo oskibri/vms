@@ -1,0 +1,12 @@
+#!/bin/bash
+
+qemu-system-x86_64 --name "Oskar VM" \
+-enable-kvm -cpu host -smp 2 -m 4G \
+-netdev bridge,br=br0,id=net0 \
+-device e1000,netdev=net0 \
+-device usb-ehci -device usb-kbd \
+-hda newdisk.qcow2 \
+-nographic \
+-boot d \
+#-cdrom ubuntu.iso \
+#-net nic -net user,hostfwd=tcp::5555-:22 \

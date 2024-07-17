@@ -1,0 +1,16 @@
+#!/bin/bash
+
+qemu-system-x86_64 --name "Arch Linux" \
+	-enable-kvm -cpu host -smp 6 -m 6G \
+	-netdev tap,id=net0,ifname=tap0,script=no,downscript=no \
+	-device virtio-net-pci,netdev=net0 \
+	-device usb-ehci -device usb-kbd \
+	-drive file=disk,format=qcow2 \
+	-nographic -display none
+
+	#-cdrom ./arch.iso
+	#-device virtio-gpu-pci \
+	#-drive if=pflash,format=raw,readonly=on,file=./OVMF.fd \
+	#-drive if=pflash,format=raw,file=./OVMF_VARS.fd -L .
+	#-hda ./disk \
+	#-device virtio-gpu-device \
